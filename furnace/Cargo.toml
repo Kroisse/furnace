@@ -1,0 +1,12 @@
+[package]
+name = "furnace"
+version = "0.2.0"
+authors = ["Eunchong Yu <kroisse@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+arc-swap = "0.3"
+crossbeam-channel = "0.3"
+failure = "0.1.5"
+log = "0.4"
+tokio = "0.1.21"
