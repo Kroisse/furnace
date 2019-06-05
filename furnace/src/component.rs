@@ -14,14 +14,13 @@ pub trait RenderQueue: Send + Sync + 'static {
     fn execute(&self, f: Box<dyn FnOnce()>);
 }
 
-pub trait Component<M>
-where
-    M: Update,
-{
+/// Building block of user interface.
+pub trait Component {
     type Renderer: RenderContext;
+    type Model: Update;
 
     fn root(&self) -> <Self::Renderer as RenderContext>::Widget;
-    fn view(ui: &Self::Renderer, handle: Handle<M::Action>, model: &M) -> Self;
+    fn view(ui: &Self::Renderer, handle: Handle<<Self::Model as Update>::Action>, model: &Self::Model) -> Self;
     #[allow(unused_variables)]
-    fn update(&mut self, ui: &Self::Renderer, model: &M) {}
+    fn update(&mut self, ui: &Self::Renderer, model: &Self::Model) {}
 }

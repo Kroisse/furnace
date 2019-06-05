@@ -32,12 +32,12 @@ where
     M: Update,
     M::Action: Debug,
 {
-    pub fn main<C>(mut self, mut ui: <C as Component<M>>::Renderer) -> Fallible<()>
+    pub fn main<C>(mut self, mut ui: <C as Component>::Renderer) -> Fallible<()>
     where
-        C: Component<M>,
+        C: Component<Model = M>,
     {
         let (h, rx) = Handle::new(ui.queue());
-        let mut toplevel = <C as Component<M>>::view(&ui, h.clone(), &self.model);
+        let mut toplevel = <C as Component>::view(&ui, h.clone(), &self.model);
         log::info!("Toplevel component is ready");
 
         let root = toplevel.root();
