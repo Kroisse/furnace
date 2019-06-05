@@ -1,7 +1,13 @@
 [package]
 name = "furnace-iui"
 version = "0.2.0"
+description = "Furnace component working with libui-rs (iui)"
+repository = "https://github.com/Kroisse/furnace"
+categories = [
+    "gui",
+]
 authors = ["Eunchong Yu <kroisse@gmail.com>"]
+license = "MIT OR Apache-2.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
