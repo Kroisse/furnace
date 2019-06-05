@@ -6,7 +6,6 @@ use crossbeam_channel as ch;
 
 use crate::{
     component::{Component, RenderContext, RenderQueue},
-    error::Fallible,
     model::Update,
 };
 
@@ -21,9 +20,9 @@ impl<M> Dispatcher<M>
 where
     M: Update + Default,
 {
-    pub fn new() -> Fallible<Self> {
+    pub fn new() -> Self {
         let model = M::default();
-        Ok(Dispatcher { model })
+        Dispatcher { model }
     }
 }
 
@@ -32,7 +31,7 @@ where
     M: Update,
     M::Action: Debug,
 {
-    pub fn main<C>(mut self, mut ui: <C as Component>::Renderer) -> Fallible<()>
+    pub fn main<C>(mut self, mut ui: <C as Component>::Renderer)
     where
         C: Component<Model = M>,
     {
@@ -54,8 +53,6 @@ where
                 ui.quit();
             }
         });
-
-        Ok(())
     }
 }
 
